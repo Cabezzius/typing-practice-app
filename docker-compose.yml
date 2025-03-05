@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+    container_name: typing-app-frontend
+    ports:
+      - "3000:80"  # Exponer en puerto 3000, usar Nginx dentro del contenedor en puerto 80
+    depends_on:
+      - backend
+    restart: unless-stopped
+    networks:
+      - typing-app-network
+
+  backend:
+    build:
+      context: ./backend
+    container_name: typing-app-backend
+    ports:
+      - "4000:4000"  # API en puerto 4000
+    depends_on:
+      - mongo
+    environment:
+      - NODE_ENV=production
+      - MONGO_URI=mongodb://mongo:27017/typingapp
+      - JWT_SECRET=your_jwt_secret_change_this_in_production
+      - PORT=4000
+    restart: unless-stopped
+    networks:
+      - typing-app-network
+
+  mongo:
+    image: mongo:5
+    container_name: typing-app-mongo
+    volumes:
+      - mongo-data:/data/db
+    ports:
+      - "27017:27017"  # Exponer MongoDB (opcional, solo para desarrollo)
+    restart: unless-stopped
+    networks:
+      - typing-app-network
+
+networks:
+  typing-app-network:
+    driver: bridge
+
+volumes:
+  mongo-data:
+    driver: local
