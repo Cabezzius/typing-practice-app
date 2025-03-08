@@ -1,0 +1,60 @@
+# Query: español
+# ContextLines: 1
+
+14 results - 4 files
+
+backend\controllers\textController.js:
+   34        category: 'fácil',
+   35:       idioma: 'español',
+   36        difficulty: 1,
+
+   57        category: req.body.category || 'fácil',
+   58:       idioma: req.body.idioma || 'español',
+   59        difficulty: req.body.difficulty || 1,
+
+   80        category: req.body.category || 'fácil',
+   81:       idioma: req.body.idioma || 'español',
+   82        difficulty: req.body.difficulty || 1,
+
+  118        category: req.query.category || 'fácil',
+  119:       idioma: req.query.idioma || 'español',
+  120        difficulty: req.query.difficulty || 1,
+
+backend\utils\seed.js:
+  16      category: 'fácil',
+  17:     language: 'español',
+  18      difficulty: 3,
+
+  24      category: 'intermedio',
+  25:     language: 'español',
+  26      difficulty: 6,
+
+  32      category: 'código',
+  33:     language: 'español',
+  34      difficulty: 7,
+
+  40      category: 'difícil',
+  41:     language: 'español',
+  42      difficulty: 8,
+
+  48      category: 'fácil',
+  49:     language: 'español',
+  50      difficulty: 1,
+
+frontend\src\pages\HomePage.js:
+  14            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+  15:             Practica mecanografía con textos en español, mide tu velocidad, mejora tu precisión
+  16              y compite con otros usuarios.
+
+frontend\src\pages\TextsPage.js:
+   24      category: 'fácil',
+   25:     language: 'español',
+   26      difficulty: 5,
+
+   50    const languages = [
+   51:     { value: 'español', label: 'Español' },
+   52      { value: 'inglés', label: 'Inglés' },
+
+  116        category: 'fácil',
+  117:       language: 'español',
+  118        difficulty: 5,
