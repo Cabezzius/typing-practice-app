@@ -33,3 +33,6 @@ Thumbs.db
 *.swo
 #archivos de ssh
 *.pub
+
+#archivos otros
+Buenas practicas.md
