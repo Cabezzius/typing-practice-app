@@ -12,7 +12,7 @@ const HomePage = () => {
             Mejora tu velocidad de escritura
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-            Practica mecanografía con textos en español, mide tu velocidad, mejora tu precisión
+            Practica mecanografía con textos en castellano, mide tu velocidad, mejora tu precisión
             y compite con otros usuarios.
           </p>
           <div className="flex flex-wrap justify-center gap-4">

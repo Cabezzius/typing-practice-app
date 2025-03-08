@@ -3,6 +3,10 @@ const router = express.Router();
 const scoreController = require('../controllers/scoreController');
 const { protect } = require('../middleware/authMiddleware');
 
+// Debug
+console.log('Score controller loaded:', !!scoreController);
+console.log('Score controller functions:', Object.keys(scoreController));
+
 // Rutas públicas
 router.get('/leaderboard', scoreController.getLeaderboard);
 

@@ -16,12 +16,27 @@ const textSchema = new mongoose.Schema({
   category: {
     type: String,
     required: [true, 'La categoría es requerida'],
-    enum: ['fácil', 'intermedio', 'difícil', 'código', 'citas', 'párrafos', 'personalizado']
+    enum: [
+      'fácil', 
+      'intermedio', 
+      'difícil', 
+      'código', 
+      'citas', 
+      'párrafos', 
+      'personalizado',
+      'iniciación',
+      'programación',
+      'ciencia',
+      'literatura',
+      'profesional',
+      'números',
+      'símbolos'
+    ]
   },
-  language: {
+  idioma: {
     type: String,
-    default: 'español',
-    enum: ['español', 'inglés', 'otro']
+    default: 'castellano',
+    enum: ['castellano', 'inglés', 'otro']
   },
   difficulty: {
     type: Number, // 1-10, donde 10 es el más difícil

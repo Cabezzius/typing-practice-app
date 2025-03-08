@@ -3,6 +3,9 @@ const router = express.Router();
 const userController = require('../controllers/userController');
 const { protect } = require('../middleware/authMiddleware');
 
+// Verificamos que userController tenga las funciones necesarias
+console.log('Funciones disponibles en userController:', Object.keys(userController));
+
 // Rutas públicas
 router.post('/', userController.registerUser);
 router.post('/login', userController.loginUser);

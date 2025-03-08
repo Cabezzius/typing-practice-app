@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { FaPlus, FaEdit, FaTrash, FaSearch, FaFilter } from 'react-icons/fa';
 import { textService } from '../services/api';
 import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
+import { FaPlus, FaEdit, FaTrash, FaSearch, FaFilter, FaKeyboard } from 'react-icons/fa';
 
 const TextsPage = () => {
   const [texts, setTexts] = useState([]);
@@ -15,32 +16,40 @@ const TextsPage = () => {
   const [filters, setFilters] = useState({
     category: '',
     difficulty: '',
-    language: ''
+    idioma: ''
   });
   const [selectedText, setSelectedText] = useState(null);
   const [formData, setFormData] = useState({
     title: '',
     content: '',
     category: 'fácil',
-    language: 'español',
+    idioma: 'castellano',
     difficulty: 5,
     isPublic: true
   });
 
   // Categorías disponibles
-  const categories = [
+  // Busca la constante de categorías y reemplázala con el mismo array actualizado:
+const categories = [
     { value: 'fácil', label: 'Fácil' },
     { value: 'intermedio', label: 'Intermedio' },
     { value: 'difícil', label: 'Difícil' },
     { value: 'código', label: 'Código' },
     { value: 'citas', label: 'Citas' },
     { value: 'párrafos', label: 'Párrafos' },
-    { value: 'personalizado', label: 'Personalizado' }
+    { value: 'personalizado', label: 'Personalizado' },
+    { value: 'iniciación', label: 'Lecciones de iniciación' },
+    { value: 'programación', label: 'Programación' },
+    { value: 'ciencia', label: 'Ciencia y tecnología' },
+    { value: 'literatura', label: 'Literatura' },
+    { value: 'profesional', label: 'Negocios y profesional' },
+    { value: 'números', label: 'Números y símbolos' },
+    { value: 'símbolos', label: 'Símbolos especiales' }
   ];
 
   // Idiomas disponibles
   const languages = [
-    { value: 'español', label: 'Español' },
+    { value: 'castellano', label: 'Castellano' },
     { value: 'inglés', label: 'Inglés' },
     { value: 'otro', label: 'Otro' }
   ];
@@ -58,7 +67,7 @@ const TextsPage = () => {
 
       const params = {
         page: currentPage,
-        limit: 10,
+        limit: 20,
         ...filters
       };
 
@@ -106,7 +115,7 @@ const TextsPage = () => {
       title: '',
       content: '',
       category: 'fácil',
-      language: 'español',
+      idioma: 'castellano',
       difficulty: 5,
       isPublic: true
     });
@@ -121,7 +130,7 @@ const TextsPage = () => {
       title: text.title,
       content: text.content,
       category: text.category,
-      language: text.language,
+      idioma: text.idioma,
       difficulty: text.difficulty,
       isPublic: text.isPublic
     });
@@ -247,15 +256,15 @@ const TextsPage = () => {
             {/* Filtro por idioma */}
             <div>
               <select
-                name="language"
-                value={filters.language}
+                name="idioma"
+                value={filters.idioma}
                 onChange={handleFilterChange}
                 className="input-field"
               >
                 <option value="">Todos los idiomas</option>
-                {languages.map((language) => (
-                  <option key={language.value} value={language.value}>
-                    {language.label}
+                {languages.map((idioma) => (
+                  <option key={idioma.value} value={idioma.value}>
+                    {idioma.label}
                   </option>
                 ))}
               </select>
@@ -308,54 +317,64 @@ const TextsPage = () => {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {texts.map((text) => (
-                  <tr key={text._id}>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm font-medium text-gray-900 truncate max-w-xs">
-                        {text.title}
-                      </div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-gray-500">
-                        {text.category}
-                      </div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-gray-500">
-                        {text.difficulty}/10
-                      </div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-gray-500">
-                        {text.language}
-                      </div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
-                        text.isPublic ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'
-                      }`}>
-                        {text.isPublic ? 'Público' : 'Privado'}
-                      </span>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                      <div className="flex space-x-3">
-                        <button
-                          onClick={() => handleEdit(text)}
-                          className="text-indigo-600 hover:text-indigo-900"
-                        >
-                          <FaEdit />
-                        </button>
-                        <button
-                          onClick={() => handleDelete(text._id)}
-                          className="text-red-600 hover:text-red-900"
-                        >
-                          <FaTrash />
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
+              {texts.map((text) => (
+                <tr key={text._id}>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <div className="text-sm font-medium text-gray-900 truncate max-w-xs">
+                      {text.title}
+                    </div>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <div className="text-sm text-gray-500">
+                      {text.category}
+                    </div>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <div className="text-sm text-gray-500">
+                      {text.difficulty}/10
+                    </div>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <div className="text-sm text-gray-500">
+                      {text.language}
+                    </div>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
+                      text.isPublic ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'
+                    }`}>
+                      {text.isPublic ? 'Público' : 'Privado'}
+                    </span>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                    <div className="flex space-x-3">
+                      <button
+                        onClick={() => handleEdit(text)}
+                        className="text-indigo-600 hover:text-indigo-900"
+                        title="Editar"
+                      >
+                        <FaEdit />
+                      </button>
+                      <button
+                        onClick={() => handleDelete(text._id)}
+                        className="text-red-600 hover:text-red-900"
+                        title="Eliminar"
+                      >
+                        <FaTrash />
+                      </button>
+                      {/* Nuevo botón de práctica */}
+                      <Link
+                        to={`/typing?textId=${text._id}`}
+                        className="text-green-600 hover:text-green-900"
+                        title="Practicar con este texto"
+                      >
+                        <FaKeyboard />
+                      </Link>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
             </table>
           </div>
         )}
@@ -470,19 +489,19 @@ const TextsPage = () => {
                   
                   {/* Idioma */}
                   <div>
-                    <label htmlFor="language" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label htmlFor="idioma" className="block text-sm font-medium text-gray-700 mb-1">
                       Idioma
                     </label>
                     <select
-                      id="language"
-                      name="language"
-                      value={formData.language}
+                      id="idioma"
+                      name="idioma"
+                      value={formData.idioma}
                       onChange={handleFormChange}
                       className="input-field"
                     >
-                      {languages.map((language) => (
-                        <option key={language.value} value={language.value}>
-                          {language.label}
+                      {languages.map((idioma) => (
+                        <option key={idioma.value} value={idioma.value}>
+                          {idioma.label}
                         </option>
                       ))}
                     </select>

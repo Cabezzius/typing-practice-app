@@ -12,6 +12,12 @@ const app = express();
 const PORT = process.env.PORT || 4000;
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/typingapp';
 
+// Logging para debugging
+console.log('Starting server...');
+console.log('Environment:', process.env.NODE_ENV);
+console.log('MONGO_URI:', MONGO_URI);
+console.log('Routes loaded:', !!userRoutes, !!textRoutes, !!scoreRoutes);
+
 // Middleware
 app.use(cors());
 app.use(express.json());

@@ -14,7 +14,7 @@ const sampleTexts = [
     title: 'El Principito - Introducción',
     content: 'Cuando yo tenía seis años vi en un libro sobre la selva virgen que se titulaba "Historias vividas", una magnífica lámina. Representaba una serpiente boa que se tragaba a una fiera. En el libro se afirmaba: "La serpiente boa se traga su presa entera, sin masticarla. Luego ya no puede moverse y duerme durante los seis meses que dura su digestión".',
     category: 'fácil',
-    language: 'español',
+    idioma: 'castellano',
     difficulty: 3,
     isPublic: true
   },
@@ -22,7 +22,7 @@ const sampleTexts = [
     title: 'Don Quijote - Capítulo 1',
     content: 'En un lugar de la Mancha, de cuyo nombre no quiero acordarme, no ha mucho tiempo que vivía un hidalgo de los de lanza en astillero, adarga antigua, rocín flaco y galgo corredor. Una olla de algo más vaca que carnero, salpicón las más noches, duelos y quebrantos los sábados, lentejas los viernes, algún palomino de añadidura los domingos, consumían las tres partes de su hacienda.',
     category: 'intermedio',
-    language: 'español',
+    idioma: 'castellano',
     difficulty: 6,
     isPublic: true
   },
@@ -30,7 +30,7 @@ const sampleTexts = [
     title: 'Ejercicio de programación',
     content: 'function calculaFibonacci(n) {\n  if (n <= 1) return n;\n  return calculaFibonacci(n-1) + calculaFibonacci(n-2);\n}\n\nconst resultado = calculaFibonacci(10);\nconsole.log(`El décimo número de Fibonacci es: ${resultado}`);',
     category: 'código',
-    language: 'español',
+    idioma: 'castellano',
     difficulty: 7,
     isPublic: true
   },
@@ -38,7 +38,7 @@ const sampleTexts = [
     title: 'Cien años de soledad - Inicio',
     content: 'Muchos años después, frente al pelotón de fusilamiento, el coronel Aureliano Buendía había de recordar aquella tarde remota en que su padre lo llevó a conocer el hielo. Macondo era entonces una aldea de veinte casas de barro y cañabrava construidas a la orilla de un río de aguas diáfanas que se precipitaban por un lecho de piedras pulidas, blancas y enormes como huevos prehistóricos.',
     category: 'difícil',
-    language: 'español',
+    idioma: 'castellano',
     difficulty: 8,
     isPublic: true
   },
@@ -46,7 +46,7 @@ const sampleTexts = [
     title: 'Práctica simple',
     content: 'El sol brilla en el cielo. Los pájaros cantan en los árboles. El viento sopla suavemente. Las flores crecen en el jardín. Los niños juegan en el parque. La música suena en la radio. El café está caliente y delicioso.',
     category: 'fácil',
-    language: 'español',
+    idioma: 'castellano',
     difficulty: 1,
     isPublic: true
   }

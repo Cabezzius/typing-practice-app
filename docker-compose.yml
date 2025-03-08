@@ -6,7 +6,7 @@ services:
       context: ./frontend
     container_name: typing-app-frontend
     ports:
-      - "3000:80"  # Exponer en puerto 3000, usar Nginx dentro del contenedor en puerto 80
+      - "3007:80"  # Exponer en puerto 3000, usar Nginx dentro del contenedor en puerto 80
     depends_on:
       - backend
     restart: unless-stopped
@@ -18,7 +18,7 @@ services:
       context: ./backend
     container_name: typing-app-backend
     ports:
-      - "4000:4000"  # API en puerto 4000
+      - "4007:4000"  # API en puerto 4000
     depends_on:
       - mongo
     environment:

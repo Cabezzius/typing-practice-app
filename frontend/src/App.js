@@ -3,16 +3,16 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-// Contexts
+// Contextos
 import { AuthProvider } from './contexts/AuthContext';
 import { TypingProvider } from './contexts/TypingContext';
 
-// Components
+// Componentes
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import PrivateRoute from './components/routing/PrivateRoute';
 
-// Pages
+// Páginas
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';

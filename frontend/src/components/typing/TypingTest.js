@@ -17,7 +17,8 @@ const TypingTest = () => {
     handleTyping,
     resetTypingState,
     textCategory,
-    changeCategory
+    changeCategory,
+    lastUpdated
   } = useTyping();
 
   const [stats, setStats] = useState({
@@ -25,6 +26,9 @@ const TypingTest = () => {
     accuracy: 100,
     timeElapsed: 0
   });
+  
+  const [isChangingCategory, setIsChangingCategory] = useState(false);
+  const [previousTextId, setPreviousTextId] = useState(null);
 
   const inputRef = useRef(null);
   const timerRef = useRef(null);
@@ -36,7 +40,14 @@ const TypingTest = () => {
     { value: 'difícil', label: 'Difícil' },
     { value: 'código', label: 'Código' },
     { value: 'citas', label: 'Citas' },
-    { value: 'párrafos', label: 'Párrafos' }
+    { value: 'párrafos', label: 'Párrafos' },
+    { value: 'iniciación', label: 'Lecciones de iniciación' },
+    { value: 'programación', label: 'Programación' },
+    { value: 'ciencia', label: 'Ciencia y tecnología' },
+    { value: 'literatura', label: 'Literatura' },
+    { value: 'profesional', label: 'Negocios y profesional' },
+    { value: 'números', label: 'Números y símbolos' },
+    { value: 'símbolos', label: 'Símbolos especiales' }
   ];
 
   // Enfocar el input cuando cambia el texto o se reinicia
@@ -44,7 +55,13 @@ const TypingTest = () => {
     if (inputRef.current) {
       inputRef.current.focus();
     }
-  }, [text]);
+
+    // Verificar si el texto realmente cambió
+    if (text && previousTextId !== text._id) {
+      console.log('Texto cambiado de:', previousTextId, 'a:', text._id);
+      setPreviousTextId(text._id);
+    }
+  }, [text, lastUpdated, previousTextId]);
 
   // Timer para actualizar estadísticas en tiempo real
   useEffect(() => {
@@ -75,6 +92,9 @@ const TypingTest = () => {
     if (e.key === 'Tab') {
       e.preventDefault();
     }
+    
+    // Si está en modo de resultados o se está cambiando de categoría, ignorar entradas de teclado
+    if (results || isChangingCategory || !text) return;
 
     // Procesar la tecla presionada
     handleTyping(e.key);
@@ -82,7 +102,16 @@ const TypingTest = () => {
 
   // Cambiar la categoría de texto
   const handleCategoryChange = (e) => {
-    changeCategory(e.target.value);
+    const newCategory = e.target.value;
+    console.log('Componente: cambiando a categoría:', newCategory);
+    
+    setIsChangingCategory(true);
+    changeCategory(newCategory);
+    
+    // Establecer un temporizador para desactivar el estado de cambio
+    setTimeout(() => {
+      setIsChangingCategory(false);
+    }, 1000);
   };
 
   // Reiniciar la prueba
@@ -193,7 +222,7 @@ const TypingTest = () => {
             value={textCategory}
             onChange={handleCategoryChange}
             className="input-field"
-            disabled={isActive}
+            disabled={isActive || isChangingCategory}
           >
             {categories.map((category) => (
               <option key={category.value} value={category.value}>
@@ -226,6 +255,7 @@ const TypingTest = () => {
           <button
             onClick={handleReset}
             className="btn btn-outline flex items-center"
+            disabled={isChangingCategory}
           >
             <FaRedo className="mr-2" />
             Cambiar texto
